@@ -1,0 +1,62 @@
+@import '../styles/vars.scss';
+.btn{
+color: $blue-500;
+font-family: 'Inter';
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+background-color: inherit;
+display: inline-flex;
+height: 100%;
+padding: 0px 12px;
+justify-content: center;
+align-items: center;
+border-radius: 6px;
+border: 1px solid $blue-500;
+&:hover{
+  background-color: $blue-500;
+  color: $white;
+  cursor: pointer;
+}}
+
+.wrapper{
+padding: 24px;
+border-radius: 8px;
+border: 1px solid $gray-200;
+height: 180px;
+background: $white;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+.title_container{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  .icon{
+    width: 10px;
+  }
+  .title{
+    @include thin-text;
+  }
+}
+.content{
+  @include large-text;
+  font-size: 20px;
+  margin-top: 5px;
+}
+}
+.btn_box{
+  height: 32px;
+}
+.simple{
+  @include thin-text;
+font-size: 14px;
+display: flex;
+width: 100%;
+justify-content: space-between;
+align-items: end;
+&:first-child{
+  padding-bottom: 10px;
+  border-bottom: 1px solid $gray-200;
+}
+}

@@ -31,7 +31,15 @@ $dark-screen: #0000006e;
   }
   color: $gray-800;
 }
-
+@mixin thin-text{
+font: {
+family: 'Inter', sans-serif;
+size: 16px;
+style: normal;
+weight: 400;
+}
+color: $gray-600;
+}
 *{
   margin:0;
   padding: 0;
