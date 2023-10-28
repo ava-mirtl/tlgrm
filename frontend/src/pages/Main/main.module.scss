@@ -33,12 +33,21 @@ margin: 16px 0 32px;
   .form{
     display: flex;
     justify-content: center;
-    .input{
+    .error_msg{
+      margin-top: 10px;
+      color: $red-500;
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      text-align: center;
+    }
+    .input, .error{
 width: 300px;
 font-family: 'Inter', sans-serif;
 font-style: normal;
 font-weight: 400;
 font-size: 18px;
+height: 55px;
 padding: 15px;
 border-radius: 6px;
 border: 1px solid $gray-200;
@@ -47,7 +56,10 @@ margin-right: 8px;
   color: $gray-400;
   font-size: 18px;
 }
-    }
+  }
+  .error{
+    border: 2px solid $red-500;
+  }
     .btn{
       font-family: 'Inter', sans-serif;
       font-style: normal;
@@ -56,12 +68,13 @@ margin-right: 8px;
       color: $white;
       background-color: $blue-500;
       padding: 15px 25px;
+      height: 55px;
       border: 0;
       border-radius: 6px;
     }
   }
 }
-  }
+  }}
   .footer{
     width: 100%;
     height: 10%;
@@ -80,4 +93,34 @@ margin-right: 8px;
       }
     }
   }
+
+
+@media (max-width: 768px) {
+  span{
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+  a{
+    display: none;
+  }
+  .wrapper{
+
+    .content{
+      .content_container{
+        .form{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          .input, .error{
+            width: 100%;
+          }
+          .btn{
+          margin-top: 10px;
+          }
+        }}}
+    .footer{
+    justify-content: center;
+  }}
+  
 }

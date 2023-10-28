@@ -1,14 +1,20 @@
 import styles from './main.module.scss';
 
 function Main() {
+  let error={};
+  error.message='Такого аккаунта не существует';
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
       <div className={styles.content_container}>
-        <h1 className={styles.title}>Аналитика Telegram Stories</h1>
+        <h1 className={styles.title}><span>Аналитика</span><span>Telegram Stories</span></h1>
         <p className={styles.subtitle}>Введите ваш никнейм Telegram или адрес канала</p>
         <form className={styles.form}>
-          <input className={styles.input} type='text' placeholder='Укажите никнейм'/>
+          <div className={styles.input_container}>
+            <input className={error?styles.error:styles.input} type='text' placeholder='Укажите никнейм'/>
+            {error&&<div className={styles.error_msg}>{error.message}</div>}
+          </div>
+          
           <button className={styles.btn}>Анализировать</button>
         </form>
       </div>
