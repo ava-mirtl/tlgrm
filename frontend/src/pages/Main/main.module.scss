@@ -93,6 +93,7 @@ margin-right: 8px;
     justify-content: center;
     align-items:center;
     .popup_content{
+      max-width: 100vw;
       background-color: $white;
       padding: 16px 24px;
       border-radius: 6px;
@@ -173,5 +174,18 @@ cursor: pointer;
     .footer{
     justify-content: center;
   }}
-  
+  .popup_content{
+
+    .popup_title{
+      margin-right: 10px;
+      flex-shrink: 0;
+      width: 60vw;
+    }
+    .exit{
+      line-height: 5%;    
+      height: 5px;    
+      transform: rotate(45deg);
+      font-size: x-large;
+  }
+}
 }
