@@ -65,4 +65,7 @@ max-width: 100%;
   div:nth-child(2n){
     margin-left: 4px;
   }
+  div:nth-child(4n-2){
+    margin-right: 4px;
+  }
 }

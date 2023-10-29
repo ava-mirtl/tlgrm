@@ -1,6 +1,6 @@
 import  { useState,  lazy, Suspense } from 'react';
 import Card from '../../components/Card';
-//import Story from '../../components/Story';
+import Story from '../../components/Story';
 import Button from '../../components/Button';
 import ticktak from '../../assets/icons/BsClock.svg';
 import calendar from '../../assets/icons/BsCalendar2Check.svg';
@@ -55,18 +55,18 @@ lazy(() => import('../../components/Story')));
           </div>
         </div>
         <div className={styles.stories_box}>
-        {showAll ? (
+       {data.stories.slice(0, 8).map(
+        (el, i) => (
+            <Story key={i} path={el.path} views={el.views} likes={el.likes} date={el.date} status={el.status} />
+         ))
+      }
+       {showAll && (
         <Suspense fallback={<div>Loading...</div>}>
-          {LazyStoryComponents.map((LazyStoryComponent, i) => (
+          {LazyStoryComponents.slice(8, LazyStoryComponents.length ).map((LazyStoryComponent, i) => (
             <LazyStoryComponent key={i} path={data.stories[i].path} views={data.stories[i].views} likes={data.stories[i].likes} date={data.stories[i].date} status={data.stories[i].status}/>
           ))}
         </Suspense>
-      ) : (LazyStoryComponents.slice(0, 8).map(
-        (LazyStoryComponent, i) => (
-          <Suspense key={i} fallback={<div>Loading...</div>}>
-            <LazyStoryComponent path={data.stories[i].path} views={data.stories[i].views} likes={data.stories[i].likes} date={data.stories[i].date} status={data.stories[i].status} />
-          </Suspense>)
-        ))}
+      ) }
         </div>
       </div>
     </div>
