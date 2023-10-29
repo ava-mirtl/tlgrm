@@ -60,3 +60,29 @@ align-items: end;
   border-bottom: 1px solid $gray-200;
 }
 }
+
+.story{
+  height:400px ;
+  width: 194px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  color: $white;
+  padding: 5px;
+  margin-bottom: 4px;
+}
+.label_box{
+  border-radius: 6px;
+  width: fit-content;
+  padding: 0 8px;
+}
+.stat_box{
+  padding: 16px;
+  .views{
+    margin-bottom: 12px;
+    .span{
+      margin-right: 12px;
+    }
+  }
+}

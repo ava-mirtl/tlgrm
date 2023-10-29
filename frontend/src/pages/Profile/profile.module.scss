@@ -1,5 +1,6 @@
 @import '../../styles/vars.scss';
 .wrapper{
+max-width: 100%;
   width: 100vw;
   min-height: 100vh;
   background-color: $gray-50;
@@ -14,7 +15,7 @@
   justify-content: end;
 }
 .btn_container{
-  width: 60px;
+  width: fit-content;
   height: 32px;
 }
 .container{
@@ -53,3 +54,15 @@
   margin-left: 8px;
 
 }}
+.subtitle_box{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.stories_box{
+  display: flex;
+  flex-wrap: wrap;
+  div:nth-child(2n){
+    margin-left: 4px;
+  }
+}

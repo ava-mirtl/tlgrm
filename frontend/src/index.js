@@ -13,7 +13,6 @@ import st3 from './assets/images/story3.png';
 import st4 from './assets/images/story4.png';
 
 
-
 let data={
   login: 'Maximus',
   username: 'Максим Мараканский',
@@ -29,23 +28,169 @@ let data={
       path: st1,
       views: 2300,
       likes: 165,
+      date: '07.10.23 в 20:00'
     },{
       status: 'active',
       path: st2,
       views: 1750,
       likes: 46,
+      date: '06.10.23 в 20:32'
     },
     {
       status: 'active',
       path: st3,
       views: 2608,
       likes: 28,
+      date: '08.10.23 в 08:17'
+    },
+    {
+      status: 'active',
+      path: st1,
+      views: 2300,
+      likes: 165,
+      date: '07.10.23 в 20:00'
+    },{
+      status: 'active',
+      path: st2,
+      views: 1750,
+      likes: 46,
+      date: '06.10.23 в 20:32'
+    },
+    {
+      status: 'active',
+      path: st3,
+      views: 2608,
+      likes: 28,
+      date: '08.10.23 в 08:17'
     },
     {
       status: 'archive',
       path: st4,
       views: 808,
       likes: 65,
+      date: '16.10.23 в 19:12'
+    },
+    {
+      status: 'archive',
+      path: st3,
+      views: 2608,
+      likes: 28,
+      date: '08.10.23 в 08:17'
+    },
+    {
+      status: 'active',
+      path: st1,
+      views: 2300,
+      likes: 165,
+      date: '07.10.23 в 20:00'
+    },{
+      status: 'active',
+      path: st2,
+      views: 1750,
+      likes: 46,
+      date: '06.10.23 в 20:32'
+    },
+    {
+      status: 'active',
+      path: st3,
+      views: 2608,
+      likes: 28,
+      date: '08.10.23 в 08:17'
+    },
+    {
+      status: 'active',
+      path: st1,
+      views: 2300,
+      likes: 165,
+      date: '07.10.23 в 20:00'
+    },{
+      status: 'active',
+      path: st2,
+      views: 1750,
+      likes: 46,
+      date: '06.10.23 в 20:32'
+    },
+    {
+      status: 'active',
+      path: st3,
+      views: 2608,
+      likes: 28,
+      date: '08.10.23 в 08:17'
+    },
+    {
+      status: 'archive',
+      path: st4,
+      views: 808,
+      likes: 65,
+      date: '16.10.23 в 19:12'
+    },
+    {
+      status: 'archive',
+      path: st3,
+      views: 2608,
+      likes: 28,
+      date: '08.10.23 в 08:17'
+    },
+    {
+      status: 'active',
+      path: st1,
+      views: 2300,
+      likes: 165,
+      date: '07.10.23 в 20:00'
+    },{
+      status: 'active',
+      path: st2,
+      views: 1750,
+      likes: 46,
+      date: '06.10.23 в 20:32'
+    },
+    {
+      status: 'active',
+      path: st3,
+      views: 2608,
+      likes: 28,
+      date: '08.10.23 в 08:17'
+    },
+    {
+      status: 'active',
+      path: st1,
+      views: 2300,
+      likes: 165,
+      date: '07.10.23 в 20:00'
+    },{
+      status: 'active',
+      path: st2,
+      views: 1750,
+      likes: 46,
+      date: '06.10.23 в 20:32'
+    },
+    {
+      status: 'active',
+      path: st3,
+      views: 2608,
+      likes: 28,
+      date: '08.10.23 в 08:17'
+    },
+    {
+      status: 'archive',
+      path: st4,
+      views: 808,
+      likes: 65,
+      date: '16.10.23 в 19:12'
+    },
+    {
+      status: 'archive',
+      path: st3,
+      views: 2608,
+      likes: 28,
+      date: '08.10.23 в 08:17'
+    },
+    {
+      status: 'archive',
+      path: st4,
+      views: 808,
+      likes: 65,
+      date: '16.10.23 в 19:12'
     }
   ],
   auditory: [
@@ -76,7 +221,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
-    <Profile data = {data} />
+      <Profile data = {data} />      
+    
   </React.StrictMode>
 );
 
