@@ -1,75 +1,163 @@
-import  { useState,  lazy, Suspense } from 'react';
-import Card from '../../components/Card';
-import Story from '../../components/Story';
-import Button from '../../components/Button';
-import ticktak from '../../assets/icons/BsClock.svg';
-import calendar from '../../assets/icons/BsCalendar2Check.svg';
-import question from '../../assets/icons/CkQuestion.svg';
-import styles from './profile.module.scss';
-//const Story = lazy(() => import('../../components/Story'));
+import { useState, lazy, Suspense } from "react";
+import Card from "../../components/Card";
+import Story from "../../components/Story";
+import User from "../../components/User";
+import Button from "../../components/Button";
+import ticktak from "../../assets/icons/BsClock.svg";
+import calendar from "../../assets/icons/BsCalendar2Check.svg";
+import question from "../../assets/icons/CkQuestion.svg";
+import styles from "./profile.module.scss";
 
-function Profile({data}){
-  const [showAll, setShowAll] = useState(false);
-    
-let toggleShowAll=()=>{
-  setShowAll(!showAll);
-};
+function Profile({ data }) {
+    const [showStories, setShowStories] = useState(false);
+    const [showUsers, setShowUsers] = useState(false);
 
-const LazyStoryComponents = data.stories.map((el, i) =>
-lazy(() => import('../../components/Story')));
+    let toggleShowStories = () => {
+        setShowStories(!showStories);
+    };
+    let toggleShowUsers = () => {
+      setShowUsers(!showUsers);
+  };
 
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.header}>
-        <div className={styles.btn_container}><Button title='Выйти'/></div>
-      </div>
-      <div className={styles.container}>
-        <div className={styles.user}>
-        <div className={styles.username_container}>
-        <div className={styles.login}>
-          {data.login}
-          </div>
-          <div className={styles.username}>
-          {data.username}
-          </div>
-          </div>
-          <div className={styles.avatar}>
-          <img src={data.path} alt="avatar" />
-        </div>
-        </div>
-        <div className={styles.time}>
-          <Card title='Лучшее время для публикации' bold={data.time} icon={ticktak} btn='Подробнее' onclick = {false}/>
-          <Card title='Лучший день для публикации' bold={data.day} icon={calendar} btn='Подробнее' onclick = {false}/>
-        </div>
+    const LazyStoryComponents = data.stories.map((el, i) =>
+        lazy(() => import("../../components/Story"))
+    );
+    const LazyUserComponents = data.auditory.map((el, i) =>
+    lazy(() => import("../../components/User"))
+);
 
-        <div className={styles.subtitle}>Аудитория</div>
-        <div className={styles.auditory}>
-          <Card title='Ваши контакты' bold={data.follow} btn='Список контактов'/>
-          <Card title='Вы в контактах' bold={data.followers} btn='Список контактов'/>
-          <Card title='Распределение' icon={question} simple={data.followers - data.premium_followers} premium={data.premium_followers} />
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles.header}>
+                <div className={styles.btn_container}>
+                    <Button title="Выйти" />
+                </div>
+            </div>
+            <div className={styles.container}>
+                <div className={styles.user}>
+                    <div className={styles.username_container}>
+                        <div className={styles.login}>{data.login}</div>
+                        <div className={styles.username}>{data.username}</div>
+                    </div>
+                    <div className={styles.avatar}>
+                        <img src={data.path} alt="avatar" />
+                    </div>
+                </div>
+                <div className={styles.time}>
+                    <Card
+                        title="Лучшее время для публикации"
+                        bold={data.time}
+                        icon={ticktak}
+                        btn="Подробнее"
+                        onclick={false}
+                    />
+                    <Card
+                        title="Лучший день для публикации"
+                        bold={data.day}
+                        icon={calendar}
+                        btn="Подробнее"
+                        onclick={false}
+                    />
+                </div>
+
+                <div className={styles.subtitle}>Аудитория</div>
+                <div className={styles.auditory}>
+                    <Card
+                        title="Ваши контакты"
+                        bold={data.follow}
+                        btn="Список контактов"
+                    />
+                    <Card
+                        title="Вы в контактах"
+                        bold={data.followers}
+                        btn="Список контактов"
+                    />
+                    <Card
+                        title="Распределение"
+                        icon={question}
+                        simple={data.followers - data.premium_followers}
+                        premium={data.premium_followers}
+                    />
+                </div>
+                <div className={styles.subtitle_box}>
+                    <div className={styles.subtitle}>Последние stories</div>
+                    <div className={styles.btn_container}>
+                        <Button
+                            title={"Смотреть все " + data.stories.length}
+                            onclick={toggleShowStories}
+                        />
+                    </div>
+                </div>
+                <div className={styles.stories_box}>
+                    {data.stories.slice(0, 8).map((el, i) => (
+                        <Story
+                            key={i}
+                            path={el.path}
+                            views={el.views}
+                            likes={el.likes}
+                            date={el.date}
+                            status={el.status}
+                        />
+                    ))}
+                    {showStories && (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            {LazyStoryComponents.slice(
+                                8,
+                                LazyStoryComponents.length
+                            ).map((LazyStoryComponent, i) => (
+                                <LazyStoryComponent
+                                    key={i}
+                                    path={data.stories[i].path}
+                                    views={data.stories[i].views}
+                                    likes={data.stories[i].likes}
+                                    date={data.stories[i].date}
+                                    status={data.stories[i].status}
+                                />
+                            ))}
+                        </Suspense>
+                    )}
+                </div>
+                <div className={styles.subtitle_box}>
+                    <div className={styles.subtitle}>Аудитория</div>
+                    <div className={styles.btn_container}>
+                        <Button
+                            title={"Смотреть все " + data.auditory.length}
+                            onclick={toggleShowUsers}
+                        />
+                    </div>
+                </div>
+                <div className={styles.users_box}>
+                    {data.auditory.slice(0, 10).map((el, i) => (
+                        <User
+                            key={i}
+                            path={el.path}
+                            views={el.views}
+                            likes={el.likes}
+                            username={el.username}
+                            status={el.status}
+                        />
+                    ))}
+                    {showUsers && (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            {LazyUserComponents.slice(
+                                10,
+                                LazyUserComponents.length
+                            ).map((LazyUserComponent, i) => (
+                                <LazyUserComponent
+                                    key={i}
+                                    path={data.auditory[i].path}
+                                    views={data.auditory[i].views}
+                                    likes={data.auditory[i].likes}
+                                    username={data.auditory[i].username}
+                                    status={data.auditory[i].status}
+                                />
+                            ))}
+                        </Suspense>
+                    )}
+                </div>
+
+            </div>
         </div>
-        <div className={styles.subtitle_box}>
-        <div className={styles.subtitle}>Последние stories</div>
-        <div className={styles.btn_container}>
-          <Button title={'Смотреть все '+ data.stories.length} onclick={toggleShowAll}/>
-          </div>
-        </div>
-        <div className={styles.stories_box}>
-       {data.stories.slice(0, 8).map(
-        (el, i) => (
-            <Story key={i} path={el.path} views={el.views} likes={el.likes} date={el.date} status={el.status} />
-         ))
-      }
-       {showAll && (
-        <Suspense fallback={<div>Loading...</div>}>
-          {LazyStoryComponents.slice(8, LazyStoryComponents.length ).map((LazyStoryComponent, i) => (
-            <LazyStoryComponent key={i} path={data.stories[i].path} views={data.stories[i].views} likes={data.stories[i].likes} date={data.stories[i].date} status={data.stories[i].status}/>
-          ))}
-        </Suspense>
-      ) }
-        </div>
-      </div>
-    </div>
-  )
+    );
 }
 export default Profile;
