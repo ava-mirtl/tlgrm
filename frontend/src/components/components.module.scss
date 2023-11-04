@@ -86,6 +86,9 @@ align-items: end;
     }
   }
 }
+.user_mobile{
+  display: none;
+}
 .user_wrapper{
   display: flex;
   justify-content: space-between;
@@ -119,4 +122,76 @@ align-items: end;
     @include thin-text;
     color: $gray-500;
   }
+}
+
+@media (max-width: 560px) {  
+  .user_wrapper{
+    display: none;
+  }
+  .user_mobile{
+    position: relative;
+    display:flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $gray-200;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    .ava_box{
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      background-size: cover;
+      margin-right: 16px;
+    }
+    .dots:hover{
+      cursor: pointer;
+    }
+  }
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #0000007A;
+      display: flex;
+      align-items: center; 
+      justify-content: center; 
+      z-index: 9999; 
+    }
+    .popup_content{
+      background-color: $white;
+      padding: 16px 24px;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .user_passport{
+        display: flex;
+        position: relative;
+      
+        .ava_box{
+          width: 50px;
+          height: 50px;
+          border-radius: 100%;
+          background-size: cover;
+          }
+        .exit{
+          position: absolute;
+          font-size: x-large;
+          right: 0;
+          font-weight: 700;
+          transform: rotate(45deg);
+          &:hover{
+            cursor: pointer;
+          }
+        }
+      }
+      .views_cont{
+        width: fit-content;
+        .user_views{
+          margin: 12px 0;
+        }
+      }
+    }
+  
 }

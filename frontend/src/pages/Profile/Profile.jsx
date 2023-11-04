@@ -25,7 +25,7 @@ function Profile({ data }) {
     const LazyUserComponents = data.auditory.map((el, i) =>
     lazy(() => import("../../components/User"))
 );
-
+  
     return (
         <div className={styles.wrapper}>
             <div className={styles.header}>
@@ -117,6 +117,37 @@ function Profile({ data }) {
                         </Suspense>
                     )}
                 </div>
+
+                <div className={styles.stories_mobile}>
+                    {data.stories.slice(0, 3).map((el, i) => (
+                        <Story
+                            key={i}
+                            path={el.path}
+                            views={el.views}
+                            likes={el.likes}
+                            date={el.date}
+                            status={el.status}
+                        />
+                    ))}
+                    {showStories && (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            {LazyStoryComponents.slice(
+                                3,
+                                LazyStoryComponents.length
+                            ).map((LazyStoryComponent, i) => (
+                                <LazyStoryComponent
+                                    key={i}
+                                    path={data.stories[i].path}
+                                    views={data.stories[i].views}
+                                    likes={data.stories[i].likes}
+                                    date={data.stories[i].date}
+                                    status={data.stories[i].status}
+                                />
+                            ))}
+                        </Suspense>
+                    )}
+                </div>
+
                 <div className={styles.subtitle_box}>
                     <div className={styles.subtitle}>Аудитория</div>
                     <div className={styles.btn_container}>
@@ -135,6 +166,8 @@ function Profile({ data }) {
                             likes={el.likes}
                             username={el.username}
                             status={el.status}
+                            stories = {data.stories.length}
+
                         />
                     ))}
                     {showUsers && (
@@ -150,6 +183,7 @@ function Profile({ data }) {
                                     likes={data.auditory[i].likes}
                                     username={data.auditory[i].username}
                                     status={data.auditory[i].status}
+                                    stories = {data.stories.length}
                                 />
                             ))}
                         </Suspense>
