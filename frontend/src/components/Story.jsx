@@ -11,20 +11,18 @@ function Story({path, views, likes, date, status}){
 
   }, []);
   const story = useRef(null);
-  const label = useRef(null);
 
 
   if (story.current !== null) {
     story.current.style.backgroundImage = `url("${imgPath}")`;
   }
-  if (label.current !== null) {
-    label.current.style.backgroundColor = status === 'active' ? '#38A169' : '#DD6B20';
-  }
+  // 'active' ? '#38A169' : '#DD6B20';
+  
 return(
 <div className={styles.story} ref={story}>
-  <div className={styles.label_box} ref={label}>
-    {status === "active" ? 'Активная':'Архив'}
-  </div>
+    {status === "active" ?<div className={styles.label_active}>
+ Активная</div>
+:<div className={styles.label_archive}>Архив</div>}
   <div className={styles.stat_box}>
   <div className={styles.views}>
     <img src={view} alt="глаз" /> <span className={styles.span}>{views}</span>

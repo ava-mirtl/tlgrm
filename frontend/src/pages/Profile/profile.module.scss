@@ -64,15 +64,10 @@ max-width: 100%;
   display: none;
 }
 .stories_box{
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(194px, 1fr)); 
+  gap: 8px; 
   justify-content: center;
-  div:nth-child(2n){
-    margin-left: 4px;
-  }
-  div:nth-child(4n-2){
-    margin-right: 4px;
-  }
 }
 .users_box{
   padding: 24px;
@@ -80,6 +75,12 @@ max-width: 100%;
   border-radius: 8px;
   border: 1px solid $gray-200;
 
+}
+.link{
+  text-decoration: none;
+  &:hover{
+    cursor: pointer;
+  }
 }
 @media (max-width: 900px) {  
   .wrapper{

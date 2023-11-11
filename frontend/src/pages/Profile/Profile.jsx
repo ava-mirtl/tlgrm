@@ -1,4 +1,8 @@
 import { useState, lazy, Suspense } from "react";
+import {
+  BrowserRouter as Router,
+  Link,
+} from 'react-router-dom';
 import Card from "../../components/Card";
 import Story from "../../components/Story";
 import User from "../../components/User";
@@ -30,7 +34,7 @@ function Profile({ data }) {
         <div className={styles.wrapper}>
             <div className={styles.header}>
                 <div className={styles.btn_container}>
-                    <Button title="Выйти" />
+                    <Button href="auth" title="Выйти" />
                 </div>
             </div>
             <div className={styles.container}>
@@ -50,6 +54,7 @@ function Profile({ data }) {
                         icon={ticktak}
                         btn="Подробнее"
                         onclick={false}
+                        href="activity"
                     />
                     <Card
                         title="Лучший день для публикации"
@@ -57,6 +62,7 @@ function Profile({ data }) {
                         icon={calendar}
                         btn="Подробнее"
                         onclick={false}
+                        href="activity"
                     />
                 </div>
 
@@ -90,14 +96,14 @@ function Profile({ data }) {
                 </div>
                 <div className={styles.stories_box}>
                     {data.stories.slice(0, 8).map((el, i) => (
-                        <Story
-                            key={i}
+                        <Link to={`story/${i}`} key={i} className={styles.link}>
+                          <Story
                             path={el.path}
                             views={el.views}
                             likes={el.likes}
                             date={el.date}
                             status={el.status}
-                        />
+                        /></Link> 
                     ))}
                     {showStories && (
                         <Suspense fallback={<div>Loading...</div>}>
@@ -105,14 +111,15 @@ function Profile({ data }) {
                                 8,
                                 LazyStoryComponents.length
                             ).map((LazyStoryComponent, i) => (
-                                <LazyStoryComponent
-                                    key={i}
+                              <Link to={`story/${i}`} key={i}>
+                              <LazyStoryComponent
                                     path={data.stories[i].path}
                                     views={data.stories[i].views}
                                     likes={data.stories[i].likes}
                                     date={data.stories[i].date}
                                     status={data.stories[i].status}
                                 />
+                                </Link>
                             ))}
                         </Suspense>
                     )}
@@ -120,14 +127,14 @@ function Profile({ data }) {
 
                 <div className={styles.stories_mobile}>
                     {data.stories.slice(0, 3).map((el, i) => (
+                        <Link to={`story/${i}`} key={i}  className={styles.link}>
                         <Story
-                            key={i}
                             path={el.path}
                             views={el.views}
                             likes={el.likes}
                             date={el.date}
                             status={el.status}
-                        />
+                        /></Link>
                     ))}
                     {showStories && (
                         <Suspense fallback={<div>Loading...</div>}>
@@ -135,14 +142,15 @@ function Profile({ data }) {
                                 3,
                                 LazyStoryComponents.length
                             ).map((LazyStoryComponent, i) => (
-                                <LazyStoryComponent
-                                    key={i}
+                              <Link to={`story/${i}`} key={i} className={styles.link}>
+                              <LazyStoryComponent
                                     path={data.stories[i].path}
                                     views={data.stories[i].views}
                                     likes={data.stories[i].likes}
                                     date={data.stories[i].date}
                                     status={data.stories[i].status}
-                                />
+                                /></Link>
+
                             ))}
                         </Suspense>
                     )}
@@ -158,7 +166,19 @@ function Profile({ data }) {
                     </div>
                 </div>
                 <div className={styles.users_box}>
-                    {data.auditory.slice(0, 10).map((el, i) => (
+                    {data.auditory.slice(0, 10).filter((el) => el.status === 'В сети').map((el, i) => (
+                        <User
+                            key={i}
+                            path={el.path}
+                            views={el.views}
+                            likes={el.likes}
+                            username={el.username}
+                            status={el.status}
+                            stories = {data.stories.length}
+
+                        />
+                    ))}
+                    {data.auditory.slice(0, 10).filter((el) => el.status != 'В сети').map((el, i) => (
                         <User
                             key={i}
                             path={el.path}
