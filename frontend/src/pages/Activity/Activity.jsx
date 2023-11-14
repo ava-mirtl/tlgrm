@@ -1,14 +1,16 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import Chart from "chart.js/auto";
 import Header from '../../components/Header';
 import styles from './activity.module.scss';
 
 
 function Activity({data}){
+  const array = data.activity;
   const chart = useRef(null);
   const percentages = Object.values(data.activity).map(day => day.percentage);
   const views = useRef(null);
-  
+  let i = 2;
+
   useEffect(() => {
     if (views.current) {
         const ctx = views.current.getContext("2d");
@@ -33,9 +35,10 @@ function Activity({data}){
                 tooltip: {
                     callbacks: {
                         title: function (context) {
-                            const value = context[0].raw;
-                            
-                            return `👁 ${value}%)`;
+                            const i = context[0].dataIndex;
+                            const stories = array[i].storiesPublished;
+                            const views = array[i].storyViews;
+                            return `${stories} stories 👁 ${views}`;
                         },
                         label: function (context) {
                             return ``;
@@ -50,7 +53,8 @@ function Activity({data}){
               x: {
                 ticks: {
                   callback: function(value, index) {
-                    return `${value}(/n)${percentages[index]}%`;
+                    const labels = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+                    return `${labels[index]}: ${percentages[index]}%`;
                   },
                 },
                 
@@ -69,18 +73,18 @@ function Activity({data}){
             data: data,
             options: options,
         });
-    }}, []);
+    }}, [array]);
 
   return (
     <div className={styles.wrapper}>
         <Header/>
         <div className={styles.container}>
           <div className={styles.content}>
-            <h1>Вовлеченность аудитории</h1>
-            <p className={styles.thin_title}>{data.login}</p>
+            <h1 className={styles.title}>Вовлеченность аудитории</h1>
+            <p className={styles.login}>{data.login}</p>
             <div className={styles.chart_card}>
                         <div className={styles.chart}>
-                            <p className={styles.thin_title}>Процентные значения</p>
+                            <p className={styles.bold}>Процентные значения</p>
                             <canvas ref={views}></canvas>
                         </div>
                     </div>

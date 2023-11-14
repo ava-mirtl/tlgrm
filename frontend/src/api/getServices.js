@@ -4934,37 +4934,37 @@ class GetServices {
                       status: 'Был(а) 8 минут назад'},
     ],
     activity: {
-      monday: {
+      0: {
         storiesPublished: 1,
         percentage: 60,
         storyViews: 342,
       },
-      tuesday: {
+      1: {
         storiesPublished: 2,
         percentage: 34,
         storyViews: 176
       },
-      wednesday: {
+      2: {
         storiesPublished: 3,
         percentage: 75,
         storyViews: 482
       },
-      thursday: {
+      3: {
         storiesPublished: 2,
         percentage: 64,
         storyViews: 368
       },
-      friday: {
+      4: {
         storiesPublished: 5,
         percentage: 70,
         storyViews: 426
       },
-      saturday: {
+      5: {
         storiesPublished: 3,
         percentage: 86,
         storyViews: 514
       },
-      sunday: {
+      6: {
         storiesPublished: 2,
         percentage: 64,
         storyViews: 369
