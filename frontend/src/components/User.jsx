@@ -44,7 +44,7 @@ function User({ path, views, likes, username, status, stories, like }) {
                   <p className={status=='В сети'?styles.status_online:styles.status_offline}>{status}</p>
                 </div>
             </div>
-            {like&&  <img src={heart} className={styles.red_heart} alt="сердце"/>} 
+            {like==1&&  <img src={heart} className={styles.red_heart} alt="сердце"/>} 
             {views&&<div className={styles.dots} onClick={()=>setPopup(true)}>
             <img src={dots} alt="три точки"/>
            </div>}

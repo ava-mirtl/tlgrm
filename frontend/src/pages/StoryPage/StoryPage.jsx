@@ -5,7 +5,7 @@ import Chart from "chart.js/auto";
 import Header from "../../components/Header";
 import eye from "../../assets/icons/BsFillEyeFill.svg";
 import heart from "../../assets/icons/IoHeartSharp.svg";
-import "chartjs-plugin-datalabels";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import styles from "./story.module.scss";
 
 function StoryPage({ data }) {
@@ -79,6 +79,7 @@ function StoryPage({ data }) {
             };
 
             chart.current = new Chart(ctx, {
+                
                 type: "bar",
                 data: data,
                 options: options,
@@ -111,6 +112,7 @@ function StoryPage({ data }) {
                     legend: {
                         position: "bottom",
                         labels: {
+                          padding: 20,
                             boxWidth: 10,
                             usePointStyle: true,
                             generateLabels: function (chart) {
@@ -141,13 +143,33 @@ function StoryPage({ data }) {
                             },
                         },
                     },
+                    datalabels: {
+                      color: 'white',
+                      formatter: function(value) {
+                        const item = (value*100/story.people.length).toFixed(0)+`%`;
+                        return item
+                      }
+                    
+                  },
+                  tooltip: {
+                    callbacks: {
+                        title: function (context) {
+                            const value = context[0].label.slice(0,8)+": "+ context[0].label.slice(9, -1);
+                           
+                            return value;
+                        },
+                        label: function (context) {
+                            return ``;
+                        },
+                    },
                 },
-            };
-
+              },
+      };
             if (premiumChart.current) {
                 premiumChart.current.destroy();
             }
             premiumChart.current = new Chart(doug, {
+              plugins: [ChartDataLabels],
                 type: "doughnut",
                 data: data,
                 options: options,
@@ -172,10 +194,12 @@ function StoryPage({ data }) {
                 labels: [`Мужчины`, `Женщины`, `Не определено`],
             };
             const options = {
+              
                 plugins: {
                     legend: {
                         position: "bottom",
                         labels: {
+                            padding: 20,
                             boxWidth: 10,
                             usePointStyle: true,
                             generateLabels: function (chart) {
@@ -204,15 +228,36 @@ function StoryPage({ data }) {
                                 }
                                 return [];
                             },
+                        }},
+                          datalabels: {
+                            color: 'white',
+                            formatter: function(value) {
+                              const item = (value*100/story.people.length).toFixed(0)+`%`;
+                              return item
+                            },
+                            center:true,
+                          
                         },
+                        tooltip: {
+                          callbacks: {
+                              title: function (context) {
+                                  const value = context[0].label+": "+ context[0].raw;
+                      
+                                  return value;
+                              },
+                              label: function (context) {
+                                  return ``;
+                              },
+                          },
+                      },
                     },
-                },
             };
 
             if (sexChart.current) {
                 sexChart.current.destroy();
             }
             sexChart.current = new Chart(sexctx, {
+              plugins: [ChartDataLabels],
                 type: "doughnut",
                 data: data,
                 options: options,
@@ -337,10 +382,10 @@ function StoryPage({ data }) {
                         </div>
                         <div className={styles.chart_card}>
                             <div className={styles.doughnut}>
+                                <p className={styles.title}>Пол аудитории</p>
                                 <p className={styles.thin_titlex}>
                                     {story.people.length} аккаунтов
                                 </p>
-                                <p className={styles.title}>Пол аудитории</p>
                                 <canvas ref={sex}></canvas>
                                 <p className={styles.doughnut_center}>
                                     {story.people.length}

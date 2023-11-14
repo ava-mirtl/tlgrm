@@ -16,7 +16,6 @@
 }
 .content{
   width: 60vw;
-  min-width: 800px;
   padding-top: 16px;
 
 }
@@ -43,7 +42,6 @@ width: 100%;
   flex-direction: column;
   justify-content: space-between;
   width: 80%;
-  min-width: 583px;
 }
 .card, .card_bottom, .chart_card {
   padding: 24px;
@@ -129,8 +127,9 @@ width: 100%;
   @include large-text;
   font-size: xx-large;
   position: absolute;
-  top: 48%;
-  left: 43%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   
 }
 .thin_titlex{
@@ -139,3 +138,70 @@ width: 100%;
 .charts_container>.chart_card{
   width: 49%;
 }
+
+@media (max-width: 1100px) {
+
+ .card{
+  padding: 12px;
+ }
+  .story{
+    .info{
+      flex-wrap: wrap;
+      margin: 12px 24px;
+    }
+    .info > div{
+      padding: 5px 0;
+    }
+  }
+  .doughnut_center{
+    top: 46%;
+  }
+}
+
+
+@media (max-width: 990px) {
+  .cards{
+    width: 100%;
+    margin-top: 40px;
+  }
+  .card{
+    padding: 24px;
+  }
+  .story{
+    flex-direction: column;
+align-items: center;    
+.info{
+      margin: 24px;
+    }
+  }
+  .charts_container{
+    flex-direction: column;
+    align-items: center;
+  
+  .chart_card{
+    margin: 12px;
+    width: 100%;
+  }}
+  .doughnut_center{
+    top: 50%;
+  }
+ }
+
+ @media (max-width: 768px) {
+  .container{
+    width: 96%;
+    margin-top: 24px;
+  }
+  .content{
+    width: 100%;
+  }
+  .cards{
+    height: auto;
+  }
+  .card{
+    height: auto;
+  }
+  .card_bottom{
+    margin-top: 24px;
+  }
+ }

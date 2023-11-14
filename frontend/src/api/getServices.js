@@ -4935,32 +4935,39 @@ class GetServices {
     ],
     activity: {
       monday: {
-        storiesPublished: getRandomNumber(1, 10),
-        storyViews: getRandomNumber(100, 1000)
+        storiesPublished: 1,
+        percentage: 60,
+        storyViews: 342,
       },
       tuesday: {
-        storiesPublished: getRandomNumber(1, 10),
-        storyViews: getRandomNumber(100, 1000)
+        storiesPublished: 2,
+        percentage: 34,
+        storyViews: 176
       },
       wednesday: {
-        storiesPublished: getRandomNumber(1, 10),
-        storyViews: getRandomNumber(100, 1000)
+        storiesPublished: 3,
+        percentage: 75,
+        storyViews: 482
       },
       thursday: {
-        storiesPublished: getRandomNumber(1, 10),
-        storyViews: getRandomNumber(100, 1000)
+        storiesPublished: 2,
+        percentage: 64,
+        storyViews: 368
       },
       friday: {
-        storiesPublished: getRandomNumber(1, 10),
-        storyViews: getRandomNumber(100, 1000)
+        storiesPublished: 5,
+        percentage: 70,
+        storyViews: 426
       },
       saturday: {
-        storiesPublished: getRandomNumber(1, 10),
-        storyViews: getRandomNumber(100, 1000)
+        storiesPublished: 3,
+        percentage: 86,
+        storyViews: 514
       },
       sunday: {
-        storiesPublished: getRandomNumber(1, 10),
-        storyViews: getRandomNumber(100, 1000)
+        storiesPublished: 2,
+        percentage: 64,
+        storyViews: 369
       }
     }
   }
