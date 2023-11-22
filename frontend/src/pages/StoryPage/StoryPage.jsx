@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import GetServices from "../../api/getServices";
 import { useParams } from "react-router-dom";
 import User from "../../components/User";
 import Chart from "chart.js/auto";
@@ -8,10 +9,17 @@ import heart from "../../assets/icons/IoHeartSharp.svg";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import styles from "./story.module.scss";
 
-function StoryPage({ data }) {
+function StoryPage() {
+    const [story, setStory] = useState([]);
+    async function getData(id){
+        const storie = await GetServices.getStoryData(id)
+        setStory(storie)
+    }
+
+
+
     const { id } = useParams();
     const [imgPath, setImgPath] = useState("../assets/images/story2.png");
-    const story = data[id];
     const storyImg = useRef(null);
     const views = useRef(null);
     const chart = useRef(null);
@@ -22,6 +30,7 @@ function StoryPage({ data }) {
     const chartViews = Object.values(story.views_per_hour);
 
     useEffect(() => {
+        getData(id)
         setImgPath(story.path);
         if (views.current) {
             const ctx = views.current.getContext("2d");
@@ -79,7 +88,7 @@ function StoryPage({ data }) {
             };
 
             chart.current = new Chart(ctx, {
-                
+
                 type: "bar",
                 data: data,
                 options: options,
@@ -149,13 +158,13 @@ function StoryPage({ data }) {
                         const item = (value*100/story.people.length).toFixed(0)+`%`;
                         return item
                       }
-                    
+
                   },
                   tooltip: {
                     callbacks: {
                         title: function (context) {
                             const value = context[0].label.slice(0,8)+": "+ context[0].label.slice(9, -1);
-                           
+
                             return value;
                         },
                         label: function (context) {
@@ -194,7 +203,7 @@ function StoryPage({ data }) {
                 labels: [`Мужчины`, `Женщины`, `Не определено`],
             };
             const options = {
-              
+
                 plugins: {
                     legend: {
                         position: "bottom",
@@ -236,13 +245,13 @@ function StoryPage({ data }) {
                               return item
                             },
                             center:true,
-                          
+
                         },
                         tooltip: {
                           callbacks: {
                               title: function (context) {
                                   const value = context[0].label+": "+ context[0].raw;
-                      
+
                                   return value;
                               },
                               label: function (context) {
@@ -395,7 +404,7 @@ function StoryPage({ data }) {
                     </div>
                     <div className={styles.title}>Вашу stories посмотрели</div>
                     <div className={styles.users_box}>
-                    
+
                     {story.people.filter((el) => el.like === 1).map((el, i) => (
                         <User
                             key={i}

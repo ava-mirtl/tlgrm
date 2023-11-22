@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import ava from '../assets/images/ava.png';
 import ava2 from '../assets/images/ava2.png';
 import ava3 from '../assets/images/ava2.png';
@@ -15,7 +15,7 @@ class GetServices {
     const data={
     login: 'Maximus',
     username: 'Максим Мараканский',
-    path: ava, 
+    path: ava,
     follow: '120',
     followers: '2300',
     premium_followers: '300',
@@ -29,7 +29,7 @@ class GetServices {
         likes: 165,
         rest: '12 мин',
         date: '07.10.23',
-        time: '20:00', 
+        time: '20:00',
         content:'Задача организации, в особенности же рамки и место обучения кадров способствует подготовки и реализации систем массового участия. ',
         duration: 48,
         views_per_hour: {
@@ -86,8 +86,8 @@ class GetServices {
           username: 'Валерий Остроухов',
           views: 750,
           date: '06.1023 в 21:35',
-          sex: null,
-          premium: 0,
+
+
           like:0,
           status: 'В сети'},
           {path: ava2,
@@ -4971,23 +4971,37 @@ class GetServices {
       }
     }
   }
-  
+
   function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
   return data
   }
-  // static async getWord(){
-  //     try{
-  //         const responce = await axios.get('./data');
-  //         return responce.data
-  //     }
-  //     catch(e){
-  //         return <>
-  //         <div>Ошибка: {e.message}</div>
-  //         </>
-  //     }
-  // }
+
+    static async getStoryData(id){
+        try{
+            const responce = await axios.get(`/story-data/${id}`);
+            console.log(responce.data)
+            return responce.data
+        }
+        catch(e){
+            return <>
+                <div>Ошибка: {e.message}</div>
+            </>
+        }
+    }
+
+    static async getProfile(){
+      try{
+          const responce = await axios.get('/profile-data');
+          return responce.data
+      }
+      catch(e){
+          return <>
+          <div>Ошибка: {e.message}</div>
+          </>
+      }
+  }
 
 
 

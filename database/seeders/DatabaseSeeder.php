@@ -1,8 +1,6 @@
 <?php
 
 namespace Database\Seeders;
-
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +10,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        for ($i = 0; $i < 10; $i++) {
+            \App\Models\User::factory()->create();
+            \App\Models\Contact::factory(40)->create();
+            \App\Models\Story::factory(15)->create(
+                [
+                    'user_id' => $i+1
+                ]
+            );
+        };
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        for ($i = 0; $i < 400; $i++) {
+               if ($i<149){
+            \App\Models\View::factory()->create(
+                [
+                    'story_id' => $i + 1,
+                    'follower_id' => $i + 1,
+                ]
+            );}
+               else{
+                   \App\Models\View::factory()->create(
+                       [
+                           'story_id' => rand(1, 150),
+                           'follower_id' => $i + 1,
+                       ]
+                   );
+               }
+        };
     }
 }

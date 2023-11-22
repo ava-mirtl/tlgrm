@@ -8,8 +8,8 @@ import GetServices from "./api/getServices.js";
 
 
 
-function App() {  
-  
+function App() {
+
   const [data, setData] = useState(false);
 
   async function getArray(){
@@ -18,17 +18,17 @@ function App() {
   }
       useEffect(() => {
   getArray()},[])
-  
+
             if (!data) {
               return <div>Загрузка...</div>;
-            } 
+            }
             return (
     <Router>
       <Routes>
         <Route path="/activity" element={<Activity data = {data}/>} />
         <Route path="/story/:id" element={<StoryPage data={data.stories}/>}/>
         <Route path="/" element={<Profile data = {data} />} />
-        <Route path="/auth" element={<Main/>} />      
+        <Route path="/auth" element={<Main/>} />
       </Routes>
     </Router>
   );
