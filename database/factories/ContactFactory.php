@@ -20,8 +20,6 @@ class ContactFactory extends Factory
         return [
             'name' => fake()->name(),
             'status' => 'В сети',
-            'follower' => fake()->boolean(),
-            'followed_by_me' => fake()->boolean(),
             'premium' =>  fake()->boolean(),
             'path' => fake()->image(),
             'login' => fake()->lastName(),

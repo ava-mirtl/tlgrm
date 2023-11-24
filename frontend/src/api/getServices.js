@@ -82,10 +82,11 @@ class GetServices {
           24: 43,
           1: 14,
         },
-        people: [{path: ava,
-          username: 'Валерий Остроухов',
-          views: 750,
-          date: '06.1023 в 21:35',
+        people: [
+            {path: ava,
+                username: 'Валерий Остроухов',
+                views: 750,
+                date: '06.1023 в 21:35',
 
 
           like:0,
@@ -4979,22 +4980,24 @@ class GetServices {
   }
 
     static async getStoryData(id){
+
         try{
-            const responce = await axios.get(`/story-data/${id}`);
-            console.log(responce.data)
-            return responce.data
+            const response = await axios.get(`/story-data/${id}`);
+            return response
         }
         catch(e){
             return <>
                 <div>Ошибка: {e.message}</div>
             </>
+
         }
     }
 
     static async getProfile(){
       try{
-          const responce = await axios.get('/profile-data');
-          return responce.data
+          const response = await axios.get('/profile-data');
+          console.log(response);
+          return response.data
       }
       catch(e){
           return <>

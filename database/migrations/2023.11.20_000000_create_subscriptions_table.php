@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
-            $table->id();
-            $table->string('login');
-            $table->string('name');
-            $table->string('status');
-            $table->string('path');
-            $table->string('sex');
-            $table->boolean('premium');
+        Schema::create('subscriptions', function (Blueprint $table) {
+
+            $table->boolean('follower');
+            $table->boolean('followed_by_user');
             $table->timestamps();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('contact_id')->constrained('contacts');
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('subscriptions');
     }
 };

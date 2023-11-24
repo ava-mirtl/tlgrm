@@ -5,6 +5,11 @@ import Main from './pages/Main/Main';
 import Profile from './pages/Profile/Profile.jsx';
 import StoryPage from './pages/StoryPage/StoryPage.jsx';
 import GetServices from "./api/getServices.js";
+import st1 from "./assets/images/story1.png";
+import ava from "./assets/images/ava.png";
+import ava2 from "./assets/images/ava2.png";
+import ava3 from "./assets/images/ava2.png";
+import ava4 from "./assets/images/ava2.png";
 
 
 
@@ -14,7 +19,9 @@ function App() {
 
   async function getArray(){
     const array  = GetServices.getData()
-    setData(array)
+     // const array  = GetServices.getStoryData();
+
+      setData(array);
   }
       useEffect(() => {
   getArray()},[])
@@ -26,7 +33,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/activity" element={<Activity data = {data}/>} />
-        <Route path="/story/:id" element={<StoryPage data={data.stories}/>}/>
+        <Route path="/story/:id" element={<StoryPage data = {data.stories}/>}/>
         <Route path="/" element={<Profile data = {data} />} />
         <Route path="/auth" element={<Main/>} />
       </Routes>

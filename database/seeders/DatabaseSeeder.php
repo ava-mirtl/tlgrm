@@ -21,13 +21,19 @@ class DatabaseSeeder extends Seeder
         };
 
         for ($i = 0; $i < 400; $i++) {
-               if ($i<149){
+            \App\Models\Subscription::factory()->create([
+                'user_id' => rand(1, 10),
+                'contact_id' => rand(1, 400),
+            ]);
+//               if ($i<150){
             \App\Models\View::factory()->create(
                 [
                     'story_id' => $i + 1,
                     'follower_id' => $i + 1,
                 ]
-            );}
+            );
+
+               }
                else{
                    \App\Models\View::factory()->create(
                        [

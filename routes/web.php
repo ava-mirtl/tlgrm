@@ -16,5 +16,9 @@ use App\Http\Controllers\StoryController;
 
 
 
-Route::get('/',  [StoryController::class, 'getData']
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/story-data/{id}', [StoryController::class, 'getData']
 )->name('story-data');
