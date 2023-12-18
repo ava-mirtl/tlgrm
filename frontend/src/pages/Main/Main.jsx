@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
-import tlg from '../../assets/icons/tlg-icon.svg'
+import tlg from '../../assets/icons/tlg-icon.svg';
 import styles from './main.module.scss';
+import TelegramLoginButton from 'react-telegram-login';
+ 
+
+ 
+
 
 function Main() {
   const token = window.token;
@@ -20,13 +24,10 @@ function Main() {
       setPopup(false);
     }
   };
+  const handleTelegramResponse = response => {
+    console.log(response);
+  };
 
-
-        function onTelegramAuth(user) {
-        alert('Logged in as ' + user.first_name + ' ' + user.last_name + ' (' + user.id + (user.username ? ', @' + user.username : '') + ')');
-    }
-
-  //error.msg='Такого аккаунта не существует';
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
@@ -59,6 +60,8 @@ function Main() {
           <div className={styles.popup_title}>Чтобы посмотреть вашу статистику, авторизуйтесь в Telegram</div >
           <div className={styles.exit} onClick={()=>setPopup(false)}>+</div>
         </div>
+        <TelegramLoginButton dataOnauth={handleTelegramResponse} botName="StatAnalysBot" />,
+
         <button className={styles.btn} >
         <img src={tlg} alt="telegram icon"/> Войти в аккаунт
           </button>

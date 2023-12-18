@@ -87,8 +87,6 @@ class GetServices {
                 username: 'Валерий Остроухов',
                 views: 750,
                 date: '06.1023 в 21:35',
-
-
           like:0,
           status: 'В сети'},
           {path: ava2,
