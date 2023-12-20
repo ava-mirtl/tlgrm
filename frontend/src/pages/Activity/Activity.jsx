@@ -7,7 +7,7 @@ import styles from './activity.module.scss';
 function Activity({data}){
 
   const { created_at, updated_at, user_id, ...array } = data.activity[0];
-  console.log(array);
+  console.log(JSON.parse(array[0]));
   const chart = useRef(null);
   const percentages = Object.values(data.activity).map(day => day.percentage);
   const views = useRef(null);
