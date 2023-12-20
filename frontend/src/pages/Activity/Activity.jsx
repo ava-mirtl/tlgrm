@@ -1,11 +1,13 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Chart from "chart.js/auto";
 import Header from '../../components/Header';
 import styles from './activity.module.scss';
 
 
 function Activity({data}){
-  const array = data.activity;
+
+  const { created_at, updated_at, user_id, ...array } = data.activity[0];
+  console.log(array);
   const chart = useRef(null);
   const percentages = Object.values(data.activity).map(day => day.percentage);
   const views = useRef(null);

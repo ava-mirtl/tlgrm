@@ -1,9 +1,8 @@
 <?php
 
 namespace Database\Seeders;
+use App\Models\Activity;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
         for ($i = 0; $i < 10; $i++) {
             \App\Models\User::factory()->create();
             \App\Models\Contact::factory(40)->create();

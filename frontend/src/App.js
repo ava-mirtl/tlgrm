@@ -18,10 +18,8 @@ function App() {
   const [data, setData] = useState(false);
 
   async function getArray(){
-    const array  = GetServices.getData()
-     // const array  = GetServices.getStoryData();
-
-      setData(array);
+    const array  = await GetServices.getData()
+      setData(array.data);
   }
       useEffect(() => {
   getArray()},[])
@@ -35,7 +33,7 @@ function App() {
         <Route path="/activity" element={<Activity data = {data}/>} />
         <Route path="/story/:id" element={<StoryPage data = {data.stories}/>}/>
         <Route path="/" element={<Profile data = {data} />} />
-        <Route path="/auth" element={<Main/>} />
+        <Route path="/auth" element={<Main />} />
       </Routes>
     </Router>
   );

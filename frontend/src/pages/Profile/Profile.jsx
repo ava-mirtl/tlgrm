@@ -13,6 +13,8 @@ import question from "../../assets/icons/CkQuestion.svg";
 import styles from "./profile.module.scss";
 
 function Profile({ data }) {
+  console.log(data);
+
     const [showStories, setShowStories] = useState(false);
     const [showUsers, setShowUsers] = useState(false);
 
@@ -44,13 +46,13 @@ function Profile({ data }) {
                         <div className={styles.username}>{data.username}</div>
                     </div>
                     <div className={styles.avatar}>
-                        <img src={data.path} alt="avatar" />
+                        <img src={process.env.PUBLIC_URL + '/' + data.path}alt="avatar" />
                     </div>
                 </div>
                 <div className={styles.time}>
                     <Card
                         title="Лучшее время для публикации"
-                        bold={data.time}
+                        bold={data.best_time}
                         icon={ticktak}
                         btn="Подробнее"
                         onclick={false}
@@ -58,7 +60,7 @@ function Profile({ data }) {
                     />
                     <Card
                         title="Лучший день для публикации"
-                        bold={data.day}
+                        bold={data.best_day}
                         icon={calendar}
                         btn="Подробнее"
                         onclick={false}

@@ -20,5 +20,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/data/{id}', [StoryController::class, 'getData']
+Route::get('/data', [StoryController::class, 'getData']
 )->name('data');

@@ -11,8 +11,8 @@ use function Laravel\Prompts\select;
 class StoryController extends Controller
 {
 
-    function getData($id){
-
+    function getData(){
+        $id = 7;
         $user = DB::select('SELECT username, login, path, best_time, best_day  FROM users WHERE id = '.$id);
         $user[0]->follow =  DB::table('contacts')
             ->join('subscriptions', 'contacts.id', '=', 'subscriptions.contact_id')
@@ -63,8 +63,7 @@ class StoryController extends Controller
             }
         }
 
-var_dump($user[0]);
-die();
+
         $data = json_encode($user[0]);
 
         return $data;
