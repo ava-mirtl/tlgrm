@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import User from "../../components/User";
+import moment from 'moment';
 import Chart from "chart.js/auto";
 import Header from "../../components/Header";
 import eye from "../../assets/icons/BsFillEyeFill.svg";
@@ -10,8 +11,9 @@ import styles from "./story.module.scss";
 
 function StoryPage({ data }) {
     const { id } = useParams();
-    const [imgPath, setImgPath] = useState("../assets/images/story2.png");
     const story = data[id];
+    console.log(story);
+
     const storyImg = useRef(null);
     const views = useRef(null);
     const chart = useRef(null);
@@ -22,7 +24,6 @@ function StoryPage({ data }) {
     const chartViews = Object.values(story.views_per_hour);
 
     useEffect(() => {
-        setImgPath(story.path);
         if (views.current) {
             const ctx = views.current.getContext("2d");
             const data = {
@@ -265,17 +266,13 @@ function StoryPage({ data }) {
         }
     }, [story]);
 
-    if (storyImg.current !== null) {
-        storyImg.current.style.backgroundImage = `url("${imgPath}")`;
-    }
-
     return (
         <div className={styles.wrapper}>
             <Header />
             <div className={styles.container}>
                 <div className={styles.content}>
                     <div className={styles.story}>
-                        <div className={styles.img} ref={storyImg}></div>
+                    <div className={styles.img} style={{background: `url(${process.env.PUBLIC_URL}/${story.path})`}}></div>
                         <div className={styles.cards}>
                             <div className={styles.card}>
                                 <div className={styles.card_header}>
@@ -302,16 +299,16 @@ function StoryPage({ data }) {
                                             Дата публикации
                                         </p>
                                         <p className={styles.bold}>
-                                            {story.date}
+                                            {moment(story.date).format('DD.MM.YY')}
                                         </p>
                                     </div>
-
+                                    
                                     <div>
                                         <p className={styles.thin_title}>
                                             Время публикации
                                         </p>
                                         <p className={styles.bold}>
-                                            {story.time}
+                                        {moment(story.date).format('HH:mm')}
                                         </p>
                                     </div>
 
@@ -399,19 +396,19 @@ function StoryPage({ data }) {
                     {story.people.filter((el) => el.like === 1).map((el, i) => (
                         <User
                             key={i}
-                            path={el.path}
+                            path={`${process.env.PUBLIC_URL + '/' + el.path}`}
                             like={el.like}
-                            username={el.username}
-                            status={el.date}
+                            username={el.name}
+                            status={ moment(el.created_at).format('DD.MM.YY [в] HH:mm')}
                         />
                     ))}
                     {story.people.filter((el) => el.like === 0).map((el, i) => (
                         <User
                             key={i}
-                            path={el.path}
+                            path={`${process.env.PUBLIC_URL + '/' + el.path}`}
                             like={el.like}
-                            username={el.username}
-                            status={el.date}
+                            username={el.name}
+                            status={ moment(el.created_at).format('DD.MM.YY [в] HH:mm')}
                         />
                     ))}
                     </div>

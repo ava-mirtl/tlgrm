@@ -16,7 +16,7 @@ use App\Http\Controllers\StoryController;
 
 
 
-Route::get('/', function () {
+Route::get('/lara', function () {
     return view('welcome');
 });
 

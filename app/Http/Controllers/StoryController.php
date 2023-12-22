@@ -13,13 +13,14 @@ class StoryController extends Controller
 
     function getData(){
         $id = 7;
-        $user = DB::select('SELECT username, login, path, best_time, best_day  FROM users WHERE id = '.$id);
+        $user = DB::select('SELECT username, login, name, path, best_time, best_day  FROM users WHERE id = '.$id);
         $user[0]->follow =  DB::table('contacts')
             ->join('subscriptions', 'contacts.id', '=', 'subscriptions.contact_id')
             ->where('subscriptions.user_id', '=', $id)
             ->whereNotNull('subscriptions.followed_by_user' )
             ->select('contacts.*')
             ->count();
+
         $user[0]->premium_followers =  DB::table('contacts')
             ->join('subscriptions', 'contacts.id', '=', 'subscriptions.contact_id')
             ->where('subscriptions.user_id', '=', $id)
@@ -27,6 +28,7 @@ class StoryController extends Controller
             ->where('contacts.premium', '=', 1 )
             ->select('contacts.*')
             ->count();
+
         $user[0]->auditory =
             DB::table('contacts')
                 ->join('subscriptions', 'contacts.id', '=', 'subscriptions.contact_id')
@@ -34,6 +36,7 @@ class StoryController extends Controller
                 ->where('subscriptions.follower', '=', 1 )
                 ->select('contacts.*')
                 ->get();
+
         $user[0]->followers = $user[0]->auditory->count();
         $user[0]->activity = DB::table('activities')
             ->where('user_id', '=', $id)
