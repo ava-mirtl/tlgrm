@@ -1,27 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.ddedbdd6.css",
-    "main.js": "/static/js/main.522a4506.js",
-    "static/media/Inter-Bold.ttf": "/static/media/Inter-Bold.0eaf807b1cf0eceabe0f.ttf",
-    "static/media/Inter-SemiBold.ttf": "/static/media/Inter-SemiBold.6058d3da655fb35169c2.ttf",
-    "static/media/Inter-Medium.ttf": "/static/media/Inter-Medium.3f7acfe50aad7ad68548.ttf",
-    "static/media/Inter-Regular.ttf": "/static/media/Inter-Regular.9ca9ba81e9dcaa12b3a1.ttf",
-    "static/media/story3.png": "/static/media/story3.71daf2434dbf383308f6.png",
-    "static/media/story1.png": "/static/media/story1.f078a4d31d46234a970c.png",
-    "static/media/story4.png": "/static/media/story4.c9fc8e1af2709c41b857.png",
-    "static/media/story2.png": "/static/media/story2.01250da7132a67115cd6.png",
-    "static/media/CkQuestion.svg": "/static/media/CkQuestion.d6d37e8e15c66f476d106e056bbed083.svg",
-    "static/media/BsCalendar2Check.svg": "/static/media/BsCalendar2Check.78e314ef063cd3acd6f893b5cc5c841a.svg",
-    "static/media/tlg-icon.svg": "/static/media/tlg-icon.4f928d4c31893519349da3bd6b8947ee.svg",
-    "static/media/BsClock.svg": "/static/media/BsClock.0e0909d753782a5ab0521da167219b6e.svg",
-    "static/media/BsFillEyeFill.svg": "/static/media/BsFillEyeFill.846b8d0f89bbf756d0ccfa5b793d28e9.svg",
-    "static/media/IoHeartSharp.svg": "/static/media/IoHeartSharp.cbdf5579c5a3a19e3f537326e4a102ec.svg",
-    "index.html": "/index.html",
-    "main.ddedbdd6.css.map": "/static/css/main.ddedbdd6.css.map",
-    "main.522a4506.js.map": "/static/js/main.522a4506.js.map"
+    "main.css": "./dist/static/css/main.ef4e4ef1.css",
+    "main.js": "./dist/static/js/main.a360b6cb.js",
+    "static/media/Inter-Bold.ttf": "./dist/static/media/Inter-Bold.0eaf807b1cf0eceabe0f.ttf",
+    "static/media/Inter-SemiBold.ttf": "./dist/static/media/Inter-SemiBold.6058d3da655fb35169c2.ttf",
+    "static/media/Inter-Medium.ttf": "./dist/static/media/Inter-Medium.3f7acfe50aad7ad68548.ttf",
+    "static/media/Inter-Regular.ttf": "./dist/static/media/Inter-Regular.9ca9ba81e9dcaa12b3a1.ttf",
+    "static/media/story1.png": "./dist/static/media/story1.f078a4d31d46234a970c.png",
+    "static/media/CkQuestion.svg": "./dist/static/media/CkQuestion.d6d37e8e15c66f476d106e056bbed083.svg",
+    "static/media/BsCalendar2Check.svg": "./dist/static/media/BsCalendar2Check.78e314ef063cd3acd6f893b5cc5c841a.svg",
+    "static/media/tlg-icon.svg": "./dist/static/media/tlg-icon.4f928d4c31893519349da3bd6b8947ee.svg",
+    "static/media/BsClock.svg": "./dist/static/media/BsClock.0e0909d753782a5ab0521da167219b6e.svg",
+    "static/media/BsFillEyeFill.svg": "./dist/static/media/BsFillEyeFill.846b8d0f89bbf756d0ccfa5b793d28e9.svg",
+    "static/media/IoHeartSharp.svg": "./dist/static/media/IoHeartSharp.cbdf5579c5a3a19e3f537326e4a102ec.svg",
+    "index.html": "./dist/index.html",
+    "main.ef4e4ef1.css.map": "./dist/static/css/main.ef4e4ef1.css.map",
+    "main.a360b6cb.js.map": "./dist/static/js/main.a360b6cb.js.map"
   },
   "entrypoints": [
-    "static/css/main.ddedbdd6.css",
-    "static/js/main.522a4506.js"
+    "static/css/main.ef4e4ef1.css",
+    "static/js/main.a360b6cb.js"
   ]
 }

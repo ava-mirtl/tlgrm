@@ -13,7 +13,7 @@ import question from "../../assets/icons/CkQuestion.svg";
 import styles from "./profile.module.scss";
 
 function Profile({ data }) {
-  console.log(data);
+  console.log(data.stories.length);
 
     const [showStories, setShowStories] = useState(false);
     const [showUsers, setShowUsers] = useState(false);
@@ -174,7 +174,7 @@ function Profile({ data }) {
                             path={el.path}
                             views={el.views}
                             likes={el.likes}
-                            username={el.username}
+                            username={el.name}
                             status={el.status}
                             stories = {data.stories.length}
 
@@ -186,7 +186,7 @@ function Profile({ data }) {
                             path={el.path}
                             views={el.views}
                             likes={el.likes}
-                            username={el.username}
+                            username={el.name}
                             status={el.status}
                             stories = {data.stories.length}
 
@@ -203,7 +203,7 @@ function Profile({ data }) {
                                     path={data.auditory[i].path}
                                     views={data.auditory[i].views}
                                     likes={data.auditory[i].likes}
-                                    username={data.auditory[i].username}
+                                    username={data.auditory[i].name}
                                     status={data.auditory[i].status}
                                     stories = {data.stories.length}
                                 />

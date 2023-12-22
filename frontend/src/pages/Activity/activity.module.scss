@@ -39,8 +39,19 @@
   width: 800px;
 }
 
+@media (max-width: 1280px) {
+  .container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
 @media (max-width: 990px) {
+  .content{
+    width: 80%;
+  }
   .chart_card{
     width: auto;
+    max-width: 100%;
   }
 }

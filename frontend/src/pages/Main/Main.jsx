@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import tlg from '../../assets/icons/tlg-icon.svg';
 import styles from './main.module.scss';
 import TelegramLoginButton from 'react-telegram-login';
  
@@ -26,6 +25,7 @@ function Main() {
   };
   const handleTelegramResponse = response => {
     console.log(response);
+    
   };
 
   return (
@@ -61,11 +61,6 @@ function Main() {
           <div className={styles.exit} onClick={()=>setPopup(false)}>+</div>
         </div>
         <TelegramLoginButton dataOnauth={handleTelegramResponse} botName="StatAnalysBot" />,
-
-        <button className={styles.btn} >
-        <img src={tlg} alt="telegram icon"/> Войти в аккаунт
-          </button>
-
       </div >
     </div >}
   </div>
