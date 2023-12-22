@@ -25,7 +25,7 @@ function Main() {
   };
   const handleTelegramResponse = response => {
     console.log(response);
-    
+
   };
 
   return (
@@ -37,6 +37,7 @@ function Main() {
         <form className={styles.form}>
           <div className={styles.input_container}>
             <input name='account' className={error.msg?styles.error:styles.input} type='text' placeholder='Укажите никнейм'/>
+            
             {error.msg&&<div className={styles.error_msg}>{error.msg}</div>}
           </div>
 
