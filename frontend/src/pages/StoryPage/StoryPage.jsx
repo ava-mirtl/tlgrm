@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import User from "../../components/User";
 import moment from 'moment';
+import VideoPlayer from "../../components/VideoPlayer";
 import Chart from "chart.js/auto";
 import Header from "../../components/Header";
 import eye from "../../assets/icons/BsFillEyeFill.svg";
@@ -13,8 +14,7 @@ function StoryPage({ data }) {
     const { id } = useParams();
     const story = data[id];
     console.log(story);
-
-    const storyImg = useRef(null);
+    const [extension, setExtension] = useState('img');   
     const views = useRef(null);
     const chart = useRef(null);
     const premium = useRef(null);
@@ -22,6 +22,21 @@ function StoryPage({ data }) {
     const sexChart = useRef(null);
     const sex = useRef(null);
     const chartViews = Object.values(story.views_per_hour);
+
+    
+  function checkFileType(path) {
+    const fileType = path.split(".").pop().toLowerCase();
+      if (["jpg", "jpeg", "png", "gif"].includes(fileType)) {
+      setExtension("img");
+    } else if (["mp4", "avi", "mov"].includes(fileType)) {
+      setExtension("video");
+    } else {
+      console.log("Это неподдерживаемый тип файла");
+    }
+  }
+  useEffect(() => {
+    checkFileType(story.path);
+  },[])
 
     useEffect(() => {
         if (views.current) {
@@ -271,8 +286,17 @@ function StoryPage({ data }) {
             <Header />
             <div className={styles.container}>
                 <div className={styles.content}>
-                    <div className={styles.story}>
-                    <div className={styles.img} style={{background: `url(${process.env.PUBLIC_URL}/${story.path})`}}></div>
+                    <div className={styles.story}>                    
+
+
+                      <div className={styles.img} 
+                      style={extension === "video" 
+                      ? { position: 'relative' } 
+                      : {background: `url(${process.env.PUBLIC_URL}${story.path})`, backgroundPosition: 'center', backgroundSize: 'cover'}}>
+                          {extension === "video" &&
+                          <VideoPlayer videoUrl = {process.env.PUBLIC_URL + story.path}/>}
+                      </div>
+
                         <div className={styles.cards}>
                             <div className={styles.card}>
                                 <div className={styles.card_header}>
@@ -321,10 +345,11 @@ function StoryPage({ data }) {
                                         </p>
                                     </div>
                                 </div>
+                                
                                 <p className={styles.thin_title}>Описание</p>
-                                <p className={styles.describtion}>
-                                    {story.content}
-                                </p>
+                                
+                                    {story.content=="none"?<p className={styles.describtion}>Нет описания</p>:<p className={styles.describtion}>{story.content}</p>}
+                                
                             </div>
                             <div className={styles.card_bottom}>
                                 <div className={styles.views}>
@@ -396,19 +421,19 @@ function StoryPage({ data }) {
                     {story.people.filter((el) => el.like === 1).map((el, i) => (
                         <User
                             key={i}
-                            path={`${process.env.PUBLIC_URL + '/' + el.path}`}
+                            path={`${process.env.PUBLIC_URL + el.path}`}
                             like={el.like}
-                            username={el.name}
-                            status={ moment(el.created_at).format('DD.MM.YY [в] HH:mm')}
+                            username={el.name?el.name:el.login}
+                            status={ moment(el.date[0].date).format('DD.MM.YY [в] HH:mm')}
                         />
                     ))}
                     {story.people.filter((el) => el.like === 0).map((el, i) => (
                         <User
                             key={i}
-                            path={`${process.env.PUBLIC_URL + '/' + el.path}`}
+                            path={`${process.env.PUBLIC_URL + el.path}`}
                             like={el.like}
-                            username={el.name}
-                            status={ moment(el.created_at).format('DD.MM.YY [в] HH:mm')}
+                            username={el.name?el.name:el.login}
+                            status={ moment(el.date[0].date).format('DD.MM.YY [в] HH:mm')}
                         />
                     ))}
                     </div>

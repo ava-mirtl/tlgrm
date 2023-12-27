@@ -80,6 +80,18 @@ align-items: end;
   padding: 5px;
   margin-bottom: 4px;
 }
+.video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  height: auto;
+  z-index: 1;
+  object-fit: cover;
+  border-radius: 8px;
+  
+}
 .label_active, .label_archive{
   border-radius: 6px;
   width: fit-content;
@@ -89,13 +101,17 @@ align-items: end;
 }
 .label_active{
   background-color: $green-500;
+  z-index: 5;
   margin-right: 12px;
 }
 .label_archive{
   background-color: $orange;
+  z-index: 5;
+
 }
 .stat_box{
   padding: 16px;
+  z-index: 5;
   .views{
     margin-bottom: 12px;
     .span{
@@ -118,12 +134,22 @@ align-items: end;
   padding-bottom: 0;
 
   }
-  .ava_box{
+  .ava_box,  .ava_div{
     width: 50px;
     height: 50px;
-    border-radius: 100%;
-    background-size: cover;
+    border-radius: 50%;
     margin-right: 16px;
+  }
+  .ava_box{
+    background-size: cover;
+  }
+  .ava_div{
+  color: white;
+  text-transform: capitalize;
+  font-size: 22px;
+  display: "flex";
+  align-items: "center"; 
+  justify-content: "center";
   }
 }
 .user_passport{
@@ -225,3 +251,4 @@ align-items: end;
     }
 
 }
+

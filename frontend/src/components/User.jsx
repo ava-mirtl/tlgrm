@@ -1,15 +1,27 @@
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styles from "./components.module.scss";
 import dots from '../assets/images/dots.png';
 import heart from '../assets/icons/IoHeartSharp.svg';
 
 function User({ path, views, likes, username, status, stories, like }) {
-    const [imgPath, setImgPath] = useState("../assets/images/story2.png");
     const [popup, setPopup] = useState(false);
+    const [color, setColor] = useState(0);
 
+    function generateContactColor(name) {
+      let hash = 0;
+      for (let i = 0; i < name.length; i++) {
+        hash = name.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      let color = (hash & 0x00FFFFFF).toString(16).toUpperCase();
+      while (color.length < 6) {
+        color = "0" + color;
+      }
+      return "#" + color;
+    }
+    
     useEffect(() => {
-        setImgPath(path);
-    }, []);
+      setColor(generateContactColor(username));
+    },[])
 
   function handleClick(e){
     if (e.target === e.currentTarget) {
@@ -20,7 +32,10 @@ function User({ path, views, likes, username, status, stories, like }) {
       <>
         <div className={styles.user_wrapper}>
             <div className={styles.user_passport}>
-              <img src={imgPath} alt="avatar" className={styles.ava_box}/>
+              {path?<img src={process.env.PUBLIC_URL + path} alt="avatar" className={styles.ava_box}/>
+              :
+              <div className={styles.ava_div} style={{backgroundColor: `${color}`, display: "flex", alignItems: "center", justifyContent: "center"}} ><div>{username[0]}</div></div>}
+              
                 <div className={styles.user_info}>
                   <p>{username}</p>
                   <p className={status=='В сети'?styles.status_online:styles.status_offline}>{status}</p>
@@ -38,7 +53,7 @@ function User({ path, views, likes, username, status, stories, like }) {
         </div>
         <div className={styles.user_mobile}>
             <div className={styles.user_passport}>
-            <img src={imgPath} alt="avatar" className={styles.ava_box}/>
+            <img src={process.env.PUBLIC_URL + path} alt="avatar" className={styles.ava_box}/>
                 <div className={styles.user_info}>
                   <p>{username}</p>
                   <p className={status=='В сети'?styles.status_online:styles.status_offline}>{status}</p>
@@ -53,7 +68,7 @@ popup &&
       <div className={styles.popup} onClick={(e)=>handleClick(e)}>
         <div className={styles.popup_content}>
           <div className={styles.user_passport}>
-              <img className={styles.ava_box} src={imgPath} alt="man">
+              <img className={styles.ava_box} src={process.env.PUBLIC_URL + path} alt="man">
               </img>
               <div className={styles.user_info}>
                 <p>{username}</p>

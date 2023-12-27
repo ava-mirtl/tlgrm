@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoryController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,6 @@ Route::get('/lara', function () {
 
 Route::get('/data', [StoryController::class, 'getData']
 )->name('data');
+
+Route::post('/aus',  [AuthController::class, 'newUser']
+)->name('aus');
