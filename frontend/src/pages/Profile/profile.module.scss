@@ -22,6 +22,10 @@ max-width: 100%;
 .container{
   width: 800px;
 }
+.avatar{
+  border-radius: 50%;
+  width: 64px;
+}
 .user{
   display: flex;
   justify-content: space-between;

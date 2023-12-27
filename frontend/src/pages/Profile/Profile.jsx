@@ -13,8 +13,6 @@ import question from "../../assets/icons/CkQuestion.svg";
 import styles from "./profile.module.scss";
 
 function Profile({ data }) {
-  console.log(data.stories.length);
-
     const [showStories, setShowStories] = useState(false);
     const [showUsers, setShowUsers] = useState(false);
 
@@ -28,7 +26,7 @@ function Profile({ data }) {
     const LazyStoryComponents = data.stories.map((el, i) =>
         lazy(() => import("../../components/Story"))
     );
-    const LazyUserComponents = data.auditory.map((el, i) =>
+    const LazyUserComponents = data.auditory.slice(10,).map((el, i) =>
     lazy(() => import("../../components/User"))
 );
   
@@ -45,8 +43,8 @@ function Profile({ data }) {
                         <div className={styles.login}>{data.login}</div>
                         <div className={styles.username}>{data.username}</div>
                     </div>
-                    <div className={styles.avatar}>
-                        <img src={process.env.PUBLIC_URL + '/' + data.path}alt="avatar" />
+                    <div>
+                        <img className={styles.avatar} src={process.env.PUBLIC_URL + '/' + data.path}alt="avatar" />
                     </div>
                 </div>
                 <div className={styles.time}>
@@ -56,7 +54,7 @@ function Profile({ data }) {
                         icon={ticktak}
                         btn="Подробнее"
                         onclick={false}
-                        href="activity"
+                        href={false}
                     />
                     <Card
                         title="Лучший день для публикации"
@@ -168,7 +166,7 @@ function Profile({ data }) {
                     </div>
                 </div>
                 <div className={styles.users_box}>
-                    {data.auditory.slice(0, 10).filter((el) => el.status === 'В сети').map((el, i) => (
+                    {data.auditory.slice(0, 10).map((el, i) => (
                         <User
                             key={i}
                             path={el.path}
@@ -177,34 +175,18 @@ function Profile({ data }) {
                             username={el.name}
                             status={el.status}
                             stories = {data.stories.length}
-
-                        />
-                    ))}
-                    {data.auditory.slice(0, 10).filter((el) => el.status != 'В сети').map((el, i) => (
-                        <User
-                            key={i}
-                            path={el.path}
-                            views={el.views}
-                            likes={el.likes}
-                            username={el.name}
-                            status={el.status}
-                            stories = {data.stories.length}
-
                         />
                     ))}
                     {showUsers && (
                         <Suspense fallback={<div>Loading...</div>}>
-                            {LazyUserComponents.slice(
-                                10,
-                                LazyUserComponents.length
-                            ).map((LazyUserComponent, i) => (
+                            {LazyUserComponents.map((LazyUserComponent, i) => (
                                 <LazyUserComponent
-                                    key={i}
-                                    path={data.auditory[i].path}
-                                    views={data.auditory[i].views}
-                                    likes={data.auditory[i].likes}
-                                    username={data.auditory[i].name}
-                                    status={data.auditory[i].status}
+                                    key={i+10}
+                                    path={data.auditory[i+10].path}
+                                    views={data.auditory[i+10].views}
+                                    likes={data.auditory[i+10].likes}
+                                    username={data.auditory[i+10].name}
+                                    status={data.auditory[i+10].status}
                                     stories = {data.stories.length}
                                 />
                             ))}

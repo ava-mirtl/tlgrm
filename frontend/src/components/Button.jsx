@@ -9,7 +9,7 @@ function Button({title, onclick, href}){
     href ? 
     <Link className={styles.btn} to={href}>{title}</Link>
     :
-  <button className={styles.btn} onClick={onclick?()=>onclick():()=>console.log("rfrfr")}>
+  <button className={styles.btn} onClick={onclick?()=>onclick():()=>console.log("У самурая нет цели, есть только путь, а путь самурая - это смерть.")}>
   {title}
   </button>)
   }

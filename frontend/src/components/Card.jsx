@@ -14,7 +14,7 @@ return(
   <div className={styles.content}>{bold}</div>
   </div>
   {btn&&
-  <div className={styles.btn_box}><Button title={btn} href={href}/></div>}
+  <div className={styles.btn_box}><Button title={btn} href={href?href:false}/></div>}
   {simple&&<div className={styles.premium}>
     <div className={styles.simple}><span>Обычные</span> <span className={styles.content}>{simple}</span></div>
     <div className={styles.simple}><span>Premium</span> <span className={styles.content}>{premium}</span></div>
